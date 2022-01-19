@@ -1,0 +1,24 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © Sathish_D
+
+//@version=4
+study("Engulfing", overlay=true)
+oneDayB4 = 1
+bodyRatio = 0.5
+dojiRatio = 0.3
+candleCount = 100
+
+l = label.new(bar_index, na)
+
+if ( (close[oneDayB4] < open[oneDayB4]) and (volume>volume[oneDayB4]) and ((abs(close[oneDayB4]-open[oneDayB4]) / abs(high[oneDayB4]-low[oneDayB4])) < dojiRatio ) and (close > open) and ((abs(close-open) / abs(high-low)) > bodyRatio ) and (close > high[oneDayB4]) and (open < low[oneDayB4]))
+    box.new(bar_index-1, open, bar_index+candleCount, close, border_color = color.red, bgcolor = color.new(color.green, 60))
+            
+
+if ((close[oneDayB4] < open[oneDayB4]) and(volume>volume[oneDayB4]) and ((abs(close[oneDayB4]-open[oneDayB4]) / abs(high[oneDayB4]-low[oneDayB4])) < dojiRatio ) and (close > open) and ((abs(close-open) / abs(high-low)) > bodyRatio ) and (close > high[oneDayB4]) and ((open < (close>open?open[oneDayB4]:close[oneDayB4])) or (open < (close[oneDayB4]>open[oneDayB4]?open[oneDayB4]:close[oneDayB4]))))
+    box.new(bar_index-1, open, bar_index+candleCount, close, border_color = color.black, bgcolor = color.new(color.green, 60))
+    
+if ((close[oneDayB4] > open[oneDayB4]) and(volume>volume[oneDayB4]) and ((abs(close[oneDayB4]-open[oneDayB4]) / abs(high[oneDayB4]-low[oneDayB4])) < dojiRatio ) and (close < open) and ((abs(close-open) / abs(high-low)) > bodyRatio ) and (close < low[oneDayB4]) and (open > high[oneDayB4]))
+    box.new(bar_index-1, open, bar_index+candleCount, close, border_color = color.red, bgcolor = color.new(color.red, 60))
+            
+if ((close[oneDayB4] > open[oneDayB4]) and(volume>volume[oneDayB4]) and ((abs(close[oneDayB4]-open[oneDayB4]) / abs(high[oneDayB4]-low[oneDayB4])) < dojiRatio ) and (close < open) and ((abs(close-open) / abs(high-low)) > bodyRatio ) and (close < low[oneDayB4]) and ((open > (close>open?close[oneDayB4]:open[oneDayB4])) or (open > (close[oneDayB4]>open[oneDayB4]?close[oneDayB4]:open[oneDayB4]))))
+    box.new(bar_index-1, open, bar_index+candleCount, close, border_color = color.black, bgcolor = color.new(color.red, 60))
