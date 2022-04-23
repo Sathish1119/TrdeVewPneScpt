@@ -1,0 +1,38 @@
+//@version=4
+study("CandleInsideCandle", overlay=true)
+oneDayB4 = 1
+twoDayB4 = 2
+threeDayB4 = 3
+candleIndex = 100
+
+dojiRatio = 0.4
+bodyRatio = 0.5
+
+voidCondition = false
+
+
+l = label.new(bar_index, na)
+
+if((close[oneDayB4]> open[oneDayB4]) and (close>open) and (open>open[oneDayB4] and (close<close[oneDayB4])))
+    box.new(bar_index-1, open[oneDayB4], bar_index+candleIndex, close[oneDayB4], border_color = color.blue, bgcolor = color.new(color.blue, 60))
+
+if((close[oneDayB4]< open[oneDayB4]) and (close<open) and (open<open[oneDayB4] and (close>close[oneDayB4])))
+    box.new(bar_index-1, open, bar_index+candleIndex, close, border_color = color.red, bgcolor = color.new(color.red, 60))
+// if (voidCondition or ((abs(close-open) / abs(high-low)) < dojiRatio ))
+//     if ((close[oneDayB4]> open[oneDayB4]) and ((abs(close[oneDayB4]-open[oneDayB4]) / abs(high[oneDayB4]-low[oneDayB4])) > bodyRatio ))
+//         if ((close[twoDayB4]> open[twoDayB4]) and ((abs(close[twoDayB4]-open[twoDayB4]) / abs(high[twoDayB4]-low[twoDayB4])) > bodyRatio ))
+//             box.new(bar_index, open, bar_index+candleIndex, close, border_color = color.black, bgcolor = color.new(color.black, 60))
+
+
+
+// if (voidCondition or ((abs(close[oneDayB4]-open[oneDayB4]) / abs(high[oneDayB4]-low[oneDayB4])) < dojiRatio ))
+//     if ((close[twoDayB4]< open[twoDayB4]) and ((abs(close[twoDayB4]-open[twoDayB4]) / abs(high[twoDayB4]-low[twoDayB4])) > bodyRatio ))
+//         if ((close < open) and ((abs(close-open) / abs(high-low)) > bodyRatio ))
+//             box.new(bar_index-1, close[oneDayB4], bar_index+candleIndex, open[oneDayB4], border_color = color.red, bgcolor = color.new(color.red, 60))
+            
+
+// // if (voidCondition or ((abs(close-open) / abs(high-low)) < dojiRatio ))
+// //     if ((close[oneDayB4]< open[oneDayB4]) and ((abs(close[oneDayB4]-open[oneDayB4]) / abs(high[oneDayB4]-low[oneDayB4])) > bodyRatio ))
+// //         if ((close[twoDayB4]< open[twoDayB4]) and ((abs(close[twoDayB4]-open[twoDayB4]) / abs(high[twoDayB4]-low[twoDayB4])) > bodyRatio ))
+// //             box.new(bar_index, open, bar_index+candleIndex, close, border_color = color.black, bgcolor = color.new(color.black, 60))
+    

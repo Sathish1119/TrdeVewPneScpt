@@ -1,0 +1,16 @@
+//@version=4
+study("Doji", overlay=true)
+oneDayB4 = 1
+twoDayB4 = 2
+threeDayB4 = 3
+candleIndex = 2
+
+dojiRatio = 0.4
+bodyRatio = 0.5
+
+voidCondition = false
+
+
+l = label.new(bar_index, na)
+if (voidCondition or ((abs(close[oneDayB4]-open[oneDayB4]) / abs(high[oneDayB4]-low[oneDayB4])) < dojiRatio))
+    box.new(bar_index-1, open[oneDayB4], bar_index+candleIndex, close[oneDayB4], border_color = color.blue, bgcolor = color.new(color.blue, 60))
